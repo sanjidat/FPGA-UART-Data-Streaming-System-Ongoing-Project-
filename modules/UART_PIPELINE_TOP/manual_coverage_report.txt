@@ -1,4 +1,4 @@
-# ASSERTION PASS: ALL PULSE WIDTH CHECKS PASSED
+
 # ==================================
 # FUNCTIONAL COVERAGE REPORT
 # 0X00  	   : 2
