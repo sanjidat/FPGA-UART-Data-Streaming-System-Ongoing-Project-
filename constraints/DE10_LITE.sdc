@@ -6,9 +6,9 @@
 #**************************************************************
 # Create Clock
 #**************************************************************
-create_clock -period "10.0 MHz" [get_ports ADC_CLK_10]
+#create_clock -period "10.0 MHz" [get_ports ADC_CLK_10]
 create_clock -period "50.0 MHz" [get_ports MAX10_CLK1_50]
-create_clock -period "50.0 MHz" [get_ports MAX10_CLK2_50]
+#create_clock -period "50.0 MHz" [get_ports MAX10_CLK2_50]
 
 #**************************************************************
 # Create Generated Clock
@@ -52,7 +52,14 @@ derive_clock_uncertainty
 # Set False Path
 #**************************************************************
 
+# Mechanical switches and pushbuttons are asynchronous to the FPGA clock
+set_false_path -from [get_ports {SW[*]}]
+set_false_path -from [get_ports {KEY[*]}]
 
+# LEDs are not sampled by an external clocked device
+set_false_path -to [get_ports {LEDR[*]}]
+
+derive_clock_uncertainty
 
 #**************************************************************
 # Set Multicycle Path
